@@ -6,9 +6,17 @@ dotenv.config();
 
 const firstRoute = require("./routes/FirstRoute");
 
+const authRouter = require("./routes/auth.routes");
+
 const app = express();
+
+//middleware
+
+app.use(express.json());
+
 // server
 app.use("/api", firstRoute);
+app.use("/api/auth", authRouter);
 
 // connect to db
 
