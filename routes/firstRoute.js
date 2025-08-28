@@ -7,7 +7,7 @@ const router = express.Router();
 
 // get type
 
-router.get("/users", (req, res) => {
+router.get("/users-data", (req, res) => {
   return res.status(200).json({
     users: [
       {

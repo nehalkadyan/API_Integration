@@ -15,3 +15,7 @@ async function register(req, res) {
     console.log("err", err);
   }
 }
+
+module.exports = {
+  register,
+};
