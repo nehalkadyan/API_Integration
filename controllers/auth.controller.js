@@ -1,6 +1,7 @@
 // import the User model
-
 const User = require("../Models/User.model");
+// importing bcrypt
+const bcrypt = require("bcryptjs");
 
 // signup controller
 
@@ -19,11 +20,16 @@ async function register(req, res) {
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
+
+    // hash password
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     // create a new user
     const newuser = new User({
       username,
       email,
-      password,
+      password: hashedPassword,
     });
 
     // storing user in db
