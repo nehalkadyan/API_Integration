@@ -8,6 +8,10 @@ const firstRoute = require("./routes/FirstRoute");
 
 const authRouter = require("./routes/auth.routes");
 
+// update router
+
+const updateRouter = require("./routes/update.routes");
+
 const app = express();
 
 //middleware
@@ -17,6 +21,7 @@ app.use(express.json());
 // server
 app.use("/api", firstRoute);
 app.use("/api/auth", authRouter);
+app.use("/update", updateRouter);
 
 // connect to db
 
