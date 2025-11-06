@@ -2,6 +2,8 @@
 const User = require("../Models/User.model");
 // importing bcrypt
 const bcrypt = require("bcryptjs");
+// importing jwt
+const jwt = require('jsonwebtoken');
 
 // signup controller
 
@@ -71,10 +73,20 @@ async function login(req, res) {
       return res.json({ message: "Password Incorrect!" });
     }
 
+    // Generate JWT token
+    const token = jwt.sign(
+      { id: existingUser._id, email: existingUser.email },
+      process.env.JWT_SECRET,
+      { expiresIn: '24h' }
+    );
+
+
     return res.status(200).json({
       message: "User successfully logged In",
       user: existingUser,
+      token: token
     });
+
   } catch (err) {
     return res.status(500).json({ message: "Internal Server Error", err });
   }

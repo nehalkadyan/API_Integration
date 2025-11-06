@@ -1,7 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser")
 dotenv.config();
+
+const cors = require("cors");
 // app
 
 const firstRoute = require("./routes/FirstRoute");
@@ -13,6 +16,14 @@ const authRouter = require("./routes/auth.routes");
 const updateRouter = require("./routes/update.routes");
 
 const app = express();
+
+app.use(cookieParser())
+
+app.use(cors(
+  {origin: "http://localhost:5173",
+  credentials: true
+  },
+))
 
 //middleware
 
@@ -32,7 +43,7 @@ mongoose
   })
   .catch((err) => console.log("err", err));
 
-app.listen(process.env.PORT, () => {
+app.listen(8000, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
 });
 
