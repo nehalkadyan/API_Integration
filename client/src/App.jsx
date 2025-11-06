@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
 import './App.css'
 import Signup from './pages/Signup'
 import SignIn from './pages/Signin'
+import Home from './pages/Home'
 
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
         <Route path = "/signup" element = {<Signup />}/>
         {/* signin route */}
         <Route path = "/signin" element = {<SignIn />}/>
+        {/* home route */}
+
+        <Route path = "/" element = {<Home />}/>
        </Routes>
      </Router>
     </>

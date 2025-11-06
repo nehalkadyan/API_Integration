@@ -1,8 +1,11 @@
 import React, {useState} from 'react'
 import "./signup.css"
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const SignIn = () => {
+
+    const navigate = useNavigate()
 
     // state variables
 
@@ -24,7 +27,10 @@ const SignIn = () => {
             {email, password},
             {withCredentials: true}
          )
-
+         
+         if(response.data){
+          navigate("/")
+         }
          console.log(response.data)
 
         }catch(err){
