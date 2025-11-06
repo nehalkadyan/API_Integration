@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+// import cookie-parser
+
 const cookieParser = require("cookie-parser")
 dotenv.config();
 
@@ -13,15 +15,16 @@ const authRouter = require("./routes/auth.routes");
 
 // update router
 
-const updateRouter = require("./routes/update.routes");
+// const updateRouter = require("./routes/update.routes");
 
 const app = express();
 
+// middleware
 app.use(cookieParser())
 
 app.use(cors(
   {origin: "http://localhost:5173",
-  credentials: true
+   credentials: true
   },
 ))
 
@@ -32,7 +35,6 @@ app.use(express.json());
 // server
 app.use("/api", firstRoute);
 app.use("/api/auth", authRouter);
-app.use("/update", updateRouter);
 
 // connect to db
 

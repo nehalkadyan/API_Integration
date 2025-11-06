@@ -80,6 +80,8 @@ async function login(req, res) {
       { expiresIn: '24h' }
     );
 
+    // set cookie
+    res.cookie("access_token", token, {httpOnly: true})
 
     return res.status(200).json({
       message: "User successfully logged In",
